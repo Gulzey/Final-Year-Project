@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CycleNav</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+.map-directions-control { /* Custom class for positioning the MapDirections */
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1; /* Ensures the element is above the map */
+}
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-directions-origin,
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-directions-destination {
+    border: none; /* Optional: removes border */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adding drop shadow */
+    background-color: white; /* Ensures input background is white */
+}
+/* Hide the default 'A' and 'B' icons */
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-directions-origin .mapboxgl-ctrl-directions-input:before,
+.mapboxgl-ctrl-directions .mapboxgl-ctrl-directions-destination .mapboxgl-ctrl-directions-input:before {
+    content: none;
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZzItYWJkaSIsImEiOiJjbHZmcm54dmswb2Y0MmpwNWJlNndhN25sIn0.pBfTketPjVzez1dzSyLaog';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/g2-abdi/clvjwp0rb006j01pc8izf9xtf', // style URL
+        center: [-24, 42], // starting center in [lng, lat]
+        zoom: 1 // starting zoom  
+    });
+
+    // Adding directions control and positioning it at the top-center
+    const directions = new MapboxDirections({
+        accessToken: mapboxgl.accessToken,
+        profile: 'mapbox/driving', // Default profile
+        alternatives: false,
+        styles: [{
+            "id": "directions-driving",
+            "icon": "car",
+            "color": "#4882c5"
+          }, {
+            "id": "directions-walking",
+            "icon": "pedestrian",
+            "color": "#f28d35"
+          }, {
+            "id": "directions-cycling",
+            "icon": "bicycle",
+            "color": "#8a8acb"
+          }]
+    });
+    map.addControl(directions, 'top-left');
+    document.querySelector('.mapboxgl-ctrl-top-left').classList.add('map-directions-control'); // Add the custom class to the directions control container
+
+    map.addControl(new mapboxgl.NavigationControl());
+    const marker1 = new mapboxgl.Marker()
+        .setLngLat([0.1276, 51.5072])
+        .addTo(map);
+
+    // Add geolocate control to the map.
+    map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true,
+        showUserHeading: true
+    }));
+</script>
+</body>
+</html>
