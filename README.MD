@@ -3,6 +3,7 @@ Overview
 
 This project aims to develop a dynamic website dedicated to cycling navigation, providing a live map to help users plan and navigate cycling routes. Originally conceived as an app, the scope has been expanded to a more inclusive and accessible web-based platform. This site will evolve over time, incorporating feedback from users to enhance functionality and user experience.
 
+The website is live at: https://cyclenav.netlify.app/
 Objectives
 
 Live Navigation Map:
@@ -39,8 +40,9 @@ Phase 3: Advanced Features and Expansion Implement additional user-requested fea
 
 Phase 4: Universal Accessibility Optimize the platform for universal usability. Conduct extensive user testing to ensure accessibility standards are met.
 
-Contributing We encourage contributions from developers, cyclists, and enthusiasts alike. If you're interested in contributing to this project, please read get in touch at see the contact setion below.
+If you're interested in contributing to this project, please read get in touch at see the contact setion below.
+Contact Gulied-abdi@outlook.com
+
 
 License The API used falls under the MapBox licese: Copyright (c) 2015, Mapbox
 
-Contact Gulied-abdi@outlook.com
